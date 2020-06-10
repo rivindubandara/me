@@ -78,7 +78,7 @@ def really_shout(a_string):
     from above.
     Look up how to 'concatinate' strings to make this happen.
     """
-    the_answer = a_string.upper() + "!"
+    the_answer = shout(a_string) + "!"
 
     return the_answer
 
