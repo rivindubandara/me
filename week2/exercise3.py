@@ -40,13 +40,17 @@ def fix_it(moves=True, should_move=True):
 
 
 def loops_1a():
+
     """Make 10 stars.
 
     Using a for loop
     return a list of 10 items, each one a string with exacly one star in it.
     E.g.: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
     """
-    list_1 = ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"]
+    star_list = []
+    for i in range(10):
+        star_list.append("*")
+    return star_list
 
 
 def loops_1c(number_of_items=5, symbol="#"):
@@ -56,8 +60,10 @@ def loops_1c(number_of_items=5, symbol="#"):
     string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-
-    return None
+    hash_list = []
+    for i in range(number_of_items):
+        hash_list.append(symbol)
+    return hash_list
 
 
 def loops_2():
@@ -78,7 +84,14 @@ def loops_2():
             ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           ]
     """
-    return None
+    list_1 = []
+    for i in range(10):
+        list_2 = []
+        for j in range(10):
+            list_2.append("*")
+        list_1.append(list_2)
+
+    return list_1
 
 
 def loops_3():
@@ -102,7 +115,14 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    return None
+    list_1 = []
+    for i in range(10):
+        list_2 = []
+        for j in range(10):
+            number = str(i)
+            list_2.append(number)
+        list_1.append(list_2)
+    return list_1
 
 
 def loops_4():
@@ -122,7 +142,14 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    return None
+    list_1 = []
+    for i in range(10):
+        list_2 = []
+        for j in range(10):
+            number = str(j)
+            list_2.append(number)
+        list_1.append(list_2)
+    return list_1
 
 
 def loops_5():
@@ -149,7 +176,14 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    return None
+    list_1 = []
+    for i in range(10):
+        list_2 = []
+        for j in range(5):
+            number = str(i)
+            list_2.append("(i{}, j{})".format(i, j))
+        list_1.append(list_2)
+    return list_1
 
 
 def loops_6():
@@ -172,7 +206,14 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    return None
+    list_1 = []
+    for i in range(10):
+        list_2 = []
+        for j in range(i + 1):
+            number = str(j)
+            list_2.append(number)
+        list_1.append(list_2)
+    return list_1
 
 
 def loops_7():
@@ -196,7 +237,7 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    return None
+
 
 
 def lp(some_kind_of_list, exercise_name):
