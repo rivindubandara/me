@@ -84,14 +84,14 @@ def loops_2():
             ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           ]
     """
-    list_1 = []
+    row_list = []
     for i in range(10):
-        list_2 = []
+        column_list = []
         for j in range(10):
-            list_2.append("*")
-        list_1.append(list_2)
+            column_list.append("*")
+        row_list.append(column_list)
 
-    return list_1
+    return row_list
 
 
 def loops_3():
@@ -115,14 +115,14 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    list_1 = []
+    row_list = []
     for i in range(10):
-        list_2 = []
+        column_list = []
         for j in range(10):
             number = str(i)
-            list_2.append(number)
-        list_1.append(list_2)
-    return list_1
+            column_list.append(number)
+        row_list.append(column_list)
+    return row_list
 
 
 def loops_4():
@@ -142,14 +142,14 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    list_1 = []
+    row_list = []
     for i in range(10):
-        list_2 = []
+        column_list = []
         for j in range(10):
             number = str(j)
-            list_2.append(number)
-        list_1.append(list_2)
-    return list_1
+            column_list.append(number)
+        row_list.append(column_list)
+    return row_list
 
 
 def loops_5():
@@ -176,14 +176,14 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    list_1 = []
+    row_list = []
     for i in range(10):
-        list_2 = []
+        column_list = []
         for j in range(5):
             number = str(i)
-            list_2.append("(i{}, j{})".format(i, j))
-        list_1.append(list_2)
-    return list_1
+            column_list.append("(i{}, j{})".format(i, j))
+        row_list.append(column_list)
+    return row_list
 
 
 def loops_6():
@@ -206,17 +206,35 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    list_1 = []
+    row_list = []
     for i in range(10):
-        list_2 = []
+        column_list = []
         for j in range(i + 1):
             number = str(j)
-            list_2.append(number)
-        list_1.append(list_2)
-    return list_1
+            column_list.append(number)
+        row_list.append(column_list)
+    return row_list
 
 
 def loops_7():
+
+    list_1 = []
+    space = 4
+    star = 1
+
+    for i in range(5):
+        list_2 = []
+        for j in range(space):
+            list_2.append(" ")
+        for j in range(star):
+            list_2.append("*")
+        for j in range(space):
+            list_2.append(" ")
+        space -= 1
+        star += 2
+        list_1.append(list_2)
+    return list_1
+        
     """Make a pyramid.
 
     Return this:
@@ -237,7 +255,6 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-
 
 
 def lp(some_kind_of_list, exercise_name):
