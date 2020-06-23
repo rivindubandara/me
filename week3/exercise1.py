@@ -52,7 +52,6 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-
     input_number = int(input("Give me a number between {} and {}".format(low, high)))
     while input_number < low or input_number > high:
         input_number = int(
@@ -68,12 +67,6 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    # user_input = input("Enter a number: ")
-
-    # while type(user_input) is str:
-    #     user_input = input("Enter a number: ")
-
-    # return user_input
 
     message = "Give me a number: "
 
@@ -82,7 +75,7 @@ def not_number_rejector(message):
             input_number = int(input(message))
             return input_number
         except Exception as e:
-            print("Please enter a number")    
+            print("Please enter a number")
 
 
 def super_asker(low, high):

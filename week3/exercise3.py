@@ -6,6 +6,18 @@ Steps on the way to making your own guessing game.
 import random
 
 
+def inputNumber(message):
+    while True:
+        try:
+            userInput = int(input(message))
+        except ValueError:
+            print("Not an integer. Try again!")
+            continue
+        else:
+            return userInput
+            break
+
+
 def advancedGuessingGame():
     """Play a guessing game with a user.
 
@@ -25,6 +37,37 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
+    print("\nWelcome to the guessing game!")
+    print("A number between _ and _ ?")
+
+    lowerBound = inputNumber("Enter a lower bound: ")
+
+    upperBound = inputNumber("Enter a upper bound: ")
+
+    print("OK then, a number between {} and {} ?".format(lowerBound, upperBound))
+
+    actualNumber = random.randint(lowerBound, upperBound)
+
+    guessed = False
+
+    while not guessed:
+        guessedNumber = int(inputNumber("Guess a number: "))
+        while guessedNumber < lowerBound or guessedNumber > upperBound:
+            guessedNumber = int(
+                input(
+                    "Out of bounds! Please give me a number between {} and {}: ".format(
+                        lowerBound, upperBound
+                    )
+                )
+            )
+        print("You guessed {},".format(guessedNumber),)
+        if guessedNumber == actualNumber:
+            print("You got it!! It was {}".format(actualNumber))
+            guessed = True
+        elif guessedNumber < actualNumber:
+            print("Too small, try again :'(")
+        else:
+            print("Too big, try again :'(")
 
     return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
