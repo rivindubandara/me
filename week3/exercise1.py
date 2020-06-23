@@ -52,12 +52,13 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    user_input = int(input("Enter a number: "))
 
-    while user_input < low or user_input > high:
-        user_input = int(input("Enter a number: "))
-        
-    return user_input
+    input_number = int(input("Give me a number between {} and {}".format(low, high)))
+    while input_number < low or input_number > high:
+        input_number = int(
+            input("Give me a number between {} and {}".format(low, high))
+        )
+    return input_number
 
 
 def not_number_rejector(message):
@@ -67,12 +68,21 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    user_input = input("Enter a number: ")
+    # user_input = input("Enter a number: ")
 
-    while type(user_input) is str:
-        user_input = input("Enter a number: ")
+    # while type(user_input) is str:
+    #     user_input = input("Enter a number: ")
 
-    return user_input
+    # return user_input
+
+    message = "Give me a number: "
+
+    while True:
+        try:
+            input_number = int(input(message))
+            return input_number
+        except Exception as e:
+            print("Please enter a number")    
 
 
 def super_asker(low, high):
@@ -83,13 +93,17 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    user_input = input("Enter a number: ")
-
-    stubborn_asker(1, 10)
-
-    not_number_rejector()
-
-    return user_input
+    stubborn_asker_number = not_number_rejector("Enter a number: ")
+    while not (low < stubborn_asker_number < high):
+        if stubborn_asker_number < low:
+            print("enter a higher number")
+        if stubborn_asker_number > high:
+            print("enter a lower number")
+        if stubborn_asker_number > low and stubborn_asker_number < high:
+            print("correct")
+            return stubborn_asker_number
+        stubborn_asker_number = not_number_rejector("enter a number")
+    return stubborn_asker_number
 
 
 if __name__ == "__main__":
