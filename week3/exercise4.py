@@ -3,6 +3,7 @@
 
 
 import math
+
 # import time
 
 
@@ -10,7 +11,7 @@ def binary_search(low, high, actual_number):
     """Do a binary search.
 
     This is going to be your first 'algorithm' in the usual sense of the word!
-    you'll give it a range to guess inside, and then use binary search to home
+    you'll give it a range to guess inside, and then use binary search to hone
     in on the actual_number.
     
     Each guess, print what the guess is. Then when you find the number return
@@ -24,8 +25,17 @@ def binary_search(low, high, actual_number):
     things much easier.
     """
     tries = 0
-    guess = 0
-    return {"guess": guess, "tries": tries}
+    guess = math.floor((high + low) / 2)
+    while (guess is not actual_number) and (tries < 100):
+        if guess < actual_number:
+            low = guess
+            guess = math.ceil((high + low) / 2)
+        elif guess > actual_number:
+            high = guess
+            guess = math.floor((high + low) / 2)
+        elif guess == actual_number:
+            return {"guess": guess, "tries": tries}
+        tries += 1
 
 
 if __name__ == "__main__":
