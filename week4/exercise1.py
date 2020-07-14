@@ -36,16 +36,19 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+    person = data["results"][0]
+    return {
+        "lastName": person["name"]["last"],
+        "password": person["login"]["password"],
+        "postcodePlusID": person["location"]["postcode"] + int(person["id"]["value"])
+        }
 
 
 def wordy_pyramid():
     """Make a pyramid out of real words.
-
     There is a random word generator here:
-    http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength=10&maxLength=10&limit=1
-    The arguments that the generator takes is the minLength and maxLength of the word
-    as well as the limit, which is the the number of words. 
+    https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength=20
+    The generator takes a single argument, length (`wordlength`) of the word.
     Visit the above link as an example.
     Use this and the requests library to make a word pyramid. The shortest
     words they have are 3 letters long and the longest are 20. The pyramid
@@ -72,9 +75,18 @@ def wordy_pyramid():
     "Nereis",
     "Leto",
     ]
-    TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
+    TIP: to add an argument to a URL, use: ?argName=argVal e.g. &wordlength=
     """
-    pass
+    word_pyramid = []
+    i = 3
+    for i in range(3, 20, 2):
+        response = requests.get(f" https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={i}")
+        print(response.text)
+        word_pyramid.append(response.text)
+    for i in range(20, 2, -2):
+        response = requests.get(f" https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={i}")
+        print(response.text)
+        word_pyramid.append(response.text)
 
 
 def pokedex(low=1, high=5):
