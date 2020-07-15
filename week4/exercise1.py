@@ -88,6 +88,7 @@ def wordy_pyramid():
         print(response.text)
         word_pyramid.append(response.text)
 
+    return word_pyramid
 
 def pokedex(low=1, high=5):
     """ Return the name, height and weight of the tallest pokemon in the range low to high.
@@ -105,11 +106,24 @@ def pokedex(low=1, high=5):
     """
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
 
-    url = template.format(id=5)
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
-    return {"name": None, "weight": None, "height": None}
+    tallest = 0
+    pokemon = []
+    for i in range(low, high):
+        url = template.format(id=i)
+        r = requests.get(url)
+        if r.status_code is 200:
+            the_json = json.loads(r.text)
+            pokemon.append(the_json)
+    
+    for p in pokemon:
+        heightCurrent = p["height"]
+        if heightCurrent > tallest:
+            tallest = heightCurrent
+            name = p["name"]
+            weight = p["weight"]
+            height = p["height"]
+
+    return {"name": name, "weight": weight, "height": height}
 
 
 def diarist():
@@ -126,8 +140,12 @@ def diarist():
          the test will have nothing to look at.
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
-    pass
-
+    laser_data = open(LOCAL + "/Trispokedovetiles(laser).gcode").read()
+    data = gcode.loads(laser_data)
+    person = 
+    return {
+        
+        }
 
 if __name__ == "__main__":
     functions = [
