@@ -107,15 +107,15 @@ def pokedex(low=1, high=5):
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
 
     tallest = 0
-    pokemon = []
+    pokemons = []
     for i in range(low, high):
         url = template.format(id=i)
         r = requests.get(url)
         if r.status_code is 200:
             the_json = json.loads(r.text)
-            pokemon.append(the_json)
+            pokemons.append(the_json)
     
-    for p in pokemon:
+    for p in pokemons:
         heightCurrent = p["height"]
         if heightCurrent > tallest:
             tallest = heightCurrent
