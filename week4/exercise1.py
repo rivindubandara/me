@@ -140,7 +140,22 @@ def diarist():
          the test will have nothing to look at.
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
-    
+    count = 0
+    mode = "r"  
+    laser_info = open(LOCAL + "/Trispokedovetiles(laser).gcode", mode)
+    command_needed = "M10 P1"
+    for line in laser_info.readlines():
+        if command_needed in line:
+            count += 1
+    laser_info.close()
+
+    mode = "w"  
+    laser_count = open(LOCAL + "/lasers.pew", mode)
+    laser_count.write(str(count))
+    laser_count.close()
+    print(count)
+
+
 
 if __name__ == "__main__":
     functions = [
