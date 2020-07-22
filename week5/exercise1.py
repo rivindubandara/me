@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import math
 """Refactoring.
 
 This exercise contains a complete and working example, but it's very poorly written.
@@ -66,32 +67,46 @@ def countdown(message, start, stop, completion_message):
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
-    pass
+    """ Calculate hypotenuse of triangle """
+    hypotenuse = math.sqrt(base ** 2 + height ** 2)
+    return hypotenuse
 
 
 def calculate_area(base, height):
-    pass
+    """ Calculate area of triangle """
+    area = (base * height) / 2
+    return area
+    
 
 
 def calculate_perimeter(base, height):
-    pass
+    """ Calculate perimeter of triangle """
+    hypotenuse = calculate_hypotenuse(base, height)
+    perimeter = base + height + hypotenuse
+    return perimeter
 
 
 def calculate_aspect(base, height):
-    pass
+    """ Calculate aspect of triangle """
+    if height > base:
+        return "tall"
+    elif height < base:
+        return "wide"
+    else:
+        return "equal"
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
     return {
-        "area": None,
-        "perimeter": None,
-        "height": None,
-        "base": None,
-        "hypotenuse": None,
-        "aspect": None,
-        "units": None,
+        "area": calculate_area(base, height),
+        "perimeter": calculate_perimeter(base, height),
+        "height": height,
+        "base": base,
+        "hypotenuse": calculate_hypotenuse(base, height),
+        "aspect": calculate_aspect(base, height),
+        "units": units,
     }
 
 
