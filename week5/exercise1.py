@@ -206,9 +206,10 @@ def wordy_pyramid(api_key):
             print("failed a request", r.status_code, i)
     return pyramid_list
 
-
 def get_a_word_of_length_n(length):
-    pass
+    import requests
+    response = requests.get(f"https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={length}")
+    return response.text
 
 
 def list_of_words_with_lengths(list_of_lengths):
