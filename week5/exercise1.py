@@ -167,53 +167,45 @@ def tell_me_about_this_right_triangle(facts_dictionary):
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
+    dictionary_of_triange_facts = get_triangle_facts(base, height, units="mm")
+    diagram = tell_me_about_this_right_triangle(dictionary_of_triange_facts)
     if return_diagram and return_dictionary:
-        return None
+        return {"diagram": diagram, "dictionary": dictionary_of_triange_facts}
     elif return_diagram:
-        return None
+        return diagram
     elif return_dictionary:
-        return None
+        return dictionary_of_triange_facts
     else:
         print("You're an odd one, you don't want anything!")
 
 
-def wordy_pyramid(api_key):
-    import requests
-
-    baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
-    )
-    pyramid_list = []
-    for i in range(3, 21, 2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    for i in range(20, 3, -2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    return pyramid_list
+def wordy_pyramid():
+    x = list(range(3, 21, 2));
+    x.extend(list(range(20, 3, -2)))
+    word_lengths = x
+    words = list_of_words_with_lengths(word_lengths)
+    return words
 
 def get_a_word_of_length_n(length):
     import requests
-    response = requests.get(f"https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={length}")
-    return response.text
-
+    baseURL = (
+        "https://us-central1-waldenpondpress.cloudfunctions.net/"
+        "give_me_a_word?wordlength={length}"
+    )
+    url = baseURL.format(length=i)
+    r = requests.get(url)
+    if r.status_code is 200:
+        message = r.text
+        return message
+    else:
+        print("failed a request", r_status_code) 
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    pyramid_list = []
+    for i in list_of_lengths:
+        pyramid_list.append(get_a_word_of_length_n(i))
+
+    return pyramid_list 
 
 
 if __name__ == "__main__":
