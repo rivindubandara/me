@@ -24,7 +24,7 @@ def italian_dinner(axiom="tomatoes", guard=6):
     operations.
 
     The most general way of characterising a production system is to see it as
-    a formal language based on symbol manipulation. They habe much in common
+    a formal language based on symbol manipulation. They have much in common
     with formal systems in logic in that:
         1.  they start with an axiom, which is given of the formal system;
         2.  there are a set of statements inthe formal system which can be
@@ -91,7 +91,7 @@ def abba(source="abba", guard=3):
     aobaobbbabbaoaaobbbaoaaobaobaobbba
                 and so on...
     """
-    def apply_rules(letter, guard):
+    def apply_rules(letter):
         """Control the substitution.
 
         You need to change these substitutions to make it work.
@@ -99,17 +99,24 @@ def abba(source="abba", guard=3):
         Hint: when guard == -1 return the letter.
         """
         if letter == "a":
-            return "a"
+            return "bba"
         elif letter == "b":
-            return "b"
+            return "aob"
         elif letter == "o":
-            return "o"
+            return "oa"
         else:
             return letter
 
     # write the rest of the function here
-    pass
+    letter = list(source)
+    new_letter_list = list(map(apply_rules, letter))
+    new_word = "".join(new_letter_list)
+    guard -= 1
 
+    if guard > 0:
+        return abba(new_word, guard)
+    else:
+        return new_word
 
 def koch(t, order, size):
     """Make turtle t draw a Koch fractal of 'order' and 'size'."""
@@ -153,8 +160,21 @@ def square_koch(t, order, size):
     """
     trace = ""
     # write the rest of the function here.
+    if order == 0:
+        t.forward(size)
+    else:
+        trace += square_koch(t, order-1, size/3)   
+        t.left(90)
+        trace += square_koch(t, order-1, size/3)
+        t.right(90)
+        trace += square_koch(t, order-1, size/3)
+        t.right(90)
+        trace += square_koch(t, order-1, size/3)
+        t.left(90)
+        trace += square_koch(t, order-1, size/3)
+        
     return str(order) + trace
-    pass
+  
 
 
 def draw_square(steps=4):
@@ -175,3 +195,4 @@ if __name__ == '__main__':
     print("AB:", abba())
     print("ID:", str(italian_dinner()))
     pass
+
