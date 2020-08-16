@@ -31,13 +31,16 @@ def fix_it(moves=True, should_move=True):
     As an extra challenge, see if you can get that down to three.
     """
 
-    if moves == True and should_move == False:
-        return "Duct Tape"
-    elif moves == False and should_move == True:
-        return "WD-40"
+    if moves == True:
+        if should_move == True:
+            return "No Problem"
+        else:
+            return "Duct Tape"
     else:
-        return "No Problem"
-
+        if should_move == True:
+            return "WD-40"
+        else:
+            return "No Problem"
 
 def loops_1a():
 
